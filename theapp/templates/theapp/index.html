@@ -1,5 +1,9 @@
-<u1>
-	{% for school in all_schools %}
-	<li><a href="/theapp/{{ school.pk }}/">{{school.schoolname}}</a></li>
-	{% endfor %}
-</u1>
+{% if all_schools %}
+	<u1>
+		{% for school in all_schools %}
+		<li><a href="/theapp/{{ school.pk }}/">{{school.schoolname}}</a></li>
+		{% endfor %}
+	</u1>
+{% else %}
+	<h3>No schools</h3>
+{% endif %}
