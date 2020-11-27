@@ -1,4 +1,5 @@
 {% if all_schools %}
+	<h3>Schools:</h3>
 	<u1>
 		{% for school in all_schools %}
 		<li><a href="/theapp/{{ school.pk }}/">{{school.schoolname}}</a></li>

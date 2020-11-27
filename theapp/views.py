@@ -1,28 +1,23 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.http import Http404
+from django.shortcuts import render
 from .models import Student
 from .models import School
 
 def index(request):
 	all_schools = School.objects.all()
-	template = loader.get_template('theapp/index.html')
 	# create dictionary
 	context = {
 		'all_schools': all_schools,
 	}
-	return HttpResponse(template.render(context, request))
+	return render(request, 'theapp/index.html', context)
 
-	"""
-	all_schools = School.objects.all()
-	html = ''
-	
-	for school in all_schools:
-		url = '/theapp/' + str(school.pk) + '/'
-		html += '<a href="' + url + '">' + school.schoolname + '</a><br>'
-	
-	return HttpResponse(html)
-	"""
 	
 
 def detail(request, school_id):
-	return HttpResponse("<h2>Details for School ID:" + str(school_id) +  "</h2>")
+	try:
+		school = School.objects.get(pk=school_id)	# check database for the school_id passed in
+	except School.DoesNotExist:
+		raise Http404("School not in Database")
+	return render(request, 'theapp/detail.html', {'school': school,})
+
+
