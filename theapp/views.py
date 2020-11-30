@@ -1,5 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
+from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Student
 from .models import School
 
@@ -11,6 +13,14 @@ def index(request):
 	}
 	return render(request, 'theapp/index.html', context)
 
+"""
+class IndexView(generic.ListView):
+	template_name = 'theapp/index.html'
+	context_object_name = 'all_schools'
+
+	def get_queryset(self):
+		return School.objects.all()
+"""
 	
 
 def detail(request, school_id):
@@ -21,3 +31,10 @@ def detail(request, school_id):
 	return render(request, 'theapp/detail.html', {'school': school,})
 
 
+class SchoolCreate(CreateView):
+	models = School
+	fields = ['schoolID', 'schoolname', 'address']
+	template_name = 'theapp/school_form.html'
+
+	def get_queryset(self):
+		return School.objects.all()

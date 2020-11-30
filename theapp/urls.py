@@ -11,4 +11,7 @@ urlpatterns = [
     # /theapp/1234/
     # navigate to a view of school_id 1234
     url(r'^(?P<school_id>[0-9]+)/$', views.detail, name='detail'),
+
+    # /theapp/school/add/
+    url(r'school/add/$', views.SchoolCreate.as_view(), name='school-add')
 ]
