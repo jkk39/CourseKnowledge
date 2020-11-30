@@ -1,1 +1,9 @@
-{{ school }}
+<!-- {{ school }} -->
+
+<h1>Students attending {{school.schoolname}}:</h1>
+
+<u1>
+	{% for student in school.student_set.all %}
+		<li>{{student.name}} - {{student.pk}} - {{student.GPA}}</li>
+	{% endfor %}
+</u1>

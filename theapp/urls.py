@@ -1,6 +1,9 @@
 from django.conf.urls import url
 from . import views
 
+# app_name is a namespace so we can reuse index and detail in other apps
+app_name = 'theapp'
+
 urlpatterns = [
 	# /theapp/
     url(r'^$', views.index, name='index'),

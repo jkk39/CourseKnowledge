@@ -2,7 +2,10 @@
 	<h3>Schools:</h3>
 	<u1>
 		{% for school in all_schools %}
-		<li><a href="/theapp/{{ school.pk }}/">{{school.schoolname}}</a></li>
+		<li><a href="{% url 'theapp:detail' school.pk %}">{{school.schoolname}}</a></li>
+		<!-- Old code
+			<li><a href="/theapp/{{ school.pk }}/">{{school.schoolname}}</a></li> 
+		-->
 		{% endfor %}
 	</u1>
 {% else %}
