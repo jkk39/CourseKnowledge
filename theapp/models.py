@@ -24,6 +24,9 @@ class Student(models.Model):
 	GPA = models.FloatField()
 	name = models.CharField(max_length=100)
 
+	def get_absolute_url(self):
+		return reverse('theapp:index')
+
 	def __str__(self):
 		return str(self.studentID).decode("utf-8")+ ' - ' + self.name + ' - '  + str(self.school_id).decode("utf-8") + ' - ' + str(self.GPA).decode("utf-8")
 

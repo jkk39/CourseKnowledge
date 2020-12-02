@@ -38,3 +38,11 @@ class SchoolCreate(CreateView):
 
 	def get_queryset(self):
 		return School.objects.all()
+
+class StudentCreate(CreateView):
+    models = Student
+    fields = ['school', 'studentID', 'name', 'GPA']
+    template_name = 'theapp/student_form.html'
+
+    def get_queryset(self):
+        return Student.objects.all()
