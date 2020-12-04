@@ -5,6 +5,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Student
 from .models import School
 from .models import Friendship
+from .models import Course
+from .models import Professor
+from .models import EnrollsIn
 
 def index(request):
 	all_schools = School.objects.all()
@@ -47,6 +50,30 @@ class StudentCreate(CreateView):
 
     def get_queryset(self):
         return Student.objects.all()
+
+class CourseCreate(CreateView):
+    models = Course
+    fields = ['courseID', 'prof', 'coursename', 'credits']
+    template_name = 'theapp/course_form.html'
+
+    def get_queryset(self):
+        return Course.objects.all()
+
+class ProfessorCreate(CreateView):
+    models = Professor
+    fields = ['profID', 'profname', 'dept', 'school']
+    template_name = 'theapp/professor_form.html'
+
+    def get_queryset(self):
+        return Professor.objects.all()
+
+class EnrollsInCreate(CreateView):
+    models = EnrollsIn
+    fields = ['student', 'course', 'date', 'grade']
+    template_name = 'theapp/enrollsin_form.html'
+
+    def get_queryset(self):
+        return EnrollsIn.objects.all()
 
 class FriendCreate(CreateView):
     models = Friendship

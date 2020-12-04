@@ -34,9 +34,13 @@ class Professor(models.Model):
 	profID = models.IntegerField(primary_key = True)
 	profname = models.CharField(max_length=50)
 	dept = models.CharField(max_length=50)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+
+	def get_absolute_url(self):
+		return reverse('theapp:index')
 
 	def __str__(self):
-		return str(self.profID).decode("utf-8") + ' - ' + self.profname + ' - ' + self.dept
+		return str(self.profID).decode("utf-8") + ' - ' + self.profname + ' - ' + self.dept + ' - '+ str(self.school_id).decode("utf-8") 
 
 
 class Course(models.Model):
@@ -44,6 +48,9 @@ class Course(models.Model):
 	prof = models.ForeignKey(Professor, on_delete=models.CASCADE)
 	coursename = models.CharField(max_length=50)
 	credits = models.IntegerField()
+
+	def get_absolute_url(self):
+		return reverse('theapp:index')
 
 	def __str__(self):
 		return str(self.courseID).decode("utf-8") + ' - ' + self.coursename + ' - ' + str(self.credits).decode("utf-8") + ' - ' + str(self.prof_id).decode("utf-8")
@@ -53,6 +60,9 @@ class EnrollsIn(models.Model):
 	course = models.ForeignKey(Course, on_delete=models.CASCADE)
 	date = models.DateField()
 	grade = models.FloatField()
+
+	def get_absolute_url(self):
+		return reverse('theapp:index')
 
 	def __str__(self):
 		return str(self.student_id).decode("utf-8") + ' - ' + str(self.course_id).decode("utf-8") + ' - ' + str(self.date).decode("utf-8") + ' - ' + str(self.grade).decode("utf-8")
