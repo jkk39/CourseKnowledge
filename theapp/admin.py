@@ -4,6 +4,7 @@ from .models import Student
 from .models import Professor
 from .models import Course
 from .models import EnrollsIn
+from .models import Friendship
 
 # Register School as an admin site
 # this allows us to edit the database from admin section
@@ -12,3 +13,4 @@ admin.site.register(Student)
 admin.site.register(Professor)
 admin.site.register(Course)
 admin.site.register(EnrollsIn)
+admin.site.register(Friendship)

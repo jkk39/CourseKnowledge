@@ -17,4 +17,7 @@ urlpatterns = [
 
     #/theapp/student/add/
     url(r'student/add/$', views.StudentCreate.as_view(), name='student-add'),
+
+    #/theapp/friend/add/
+    url(r'friend/add/$', views.FriendCreate.as_view(), name='friend-add'),
 ]

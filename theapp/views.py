@@ -4,6 +4,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Student
 from .models import School
+from .models import Friendship
 
 def index(request):
 	all_schools = School.objects.all()
@@ -46,3 +47,11 @@ class StudentCreate(CreateView):
 
     def get_queryset(self):
         return Student.objects.all()
+
+class FriendCreate(CreateView):
+    models = Friendship
+    fields = ['friend1ID', 'friend2ID']
+    template_name = 'theapp/friend_form.html'
+
+    def get_queryset(self):
+        return Friendship.objects.all()

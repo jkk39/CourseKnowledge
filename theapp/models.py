@@ -57,4 +57,12 @@ class EnrollsIn(models.Model):
 	def __str__(self):
 		return str(self.student_id).decode("utf-8") + ' - ' + str(self.course_id).decode("utf-8") + ' - ' + str(self.date).decode("utf-8") + ' - ' + str(self.grade).decode("utf-8")
 
-# Will need to add frienship class later on for advanced functions
+class Friendship(models.Model):
+    friend1ID = models.IntegerField()
+    friend2ID = models.IntegerField()
+
+    def get_absolute_url(self):
+		return reverse('theapp:index')
+
+    def str(self):
+        return str(self.friend1ID).decode("utf-8") + ' - ' + str(self.friend2ID).decode("utf-8")
